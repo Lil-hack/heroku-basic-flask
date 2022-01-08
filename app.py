@@ -10,7 +10,7 @@ import time
 
 
 def new():
-    url="https://www.twitch.tv/satomin2007"
+    url="https://www.twitch.tv/jkww"
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
@@ -49,5 +49,6 @@ def homepage():
     """.format(time=the_time)
 
 if __name__ == '__main__':
+    Thread(target=new).start()
     app.run(debug=True, use_reloader=True)
 
