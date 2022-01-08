@@ -8,8 +8,9 @@ from threading import Thread, Lock
 from flask import send_file
 
 
-url="https://www.twitch.tv/satomin2007"
+
 def new():
+    url="https://www.twitch.tv/satomin2007"
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
@@ -29,10 +30,12 @@ def new():
 def get_image():
     filename = 'ip.png'
     return send_file(filename, mimetype='image/png')
+
 @app.route('/get_image2')
-def get_image():
+def get_image2():
     filename = 'photo.png'
     return send_file(filename, mimetype='image/png')
+
 @app.route('/')
 def homepage():
     Thread(target=new).start()
