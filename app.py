@@ -21,10 +21,10 @@ def new():
     driver.save_screenshot(f'ip.png')
     driver.get(url)
     for i in range(0, 100):
-        wd.save_screenshot(f'photo.png')
+        driver.save_screenshot(f'photo.png')
         print('lox2')
         time.sleep(500)
-        wd.get(url)
+        driver.get(url)
     
 @app.route('/get_image')
 def get_image():
