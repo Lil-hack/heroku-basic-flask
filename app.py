@@ -49,6 +49,5 @@ def homepage():
     """.format(time=the_time)
 
 if __name__ == '__main__':
-    Thread(target=new).start()
     app.run(debug=True, use_reloader=True)
 
