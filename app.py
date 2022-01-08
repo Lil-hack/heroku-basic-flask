@@ -5,6 +5,12 @@ app = Flask(__name__)
 import os
 import random
 
+from flask import send_file
+
+@app.route('/get_image')
+def get_image():
+    filename = 'ip.png'
+    return send_file(filename, mimetype='image/png')
 
 @app.route('/')
 def homepage():
@@ -15,7 +21,7 @@ def homepage():
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get("http://check.torproject.org")
-    driver.save_screenshot(f'3ip-{random.randint(1,100000)}.png')
+    driver.save_screenshot(f'ip.png')
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
