@@ -14,6 +14,8 @@ def homepage():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver.get("http://check.torproject.org")
+    driver.save_screenshot(f'3ip-{random.randint(1,100000)}.png')
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
