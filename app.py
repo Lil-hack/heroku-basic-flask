@@ -3,7 +3,7 @@ from datetime import datetime
 from selenium import webdriver
 app = Flask(__name__)
 import os
-
+import random
 
 
 @app.route('/')
