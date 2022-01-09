@@ -11,6 +11,7 @@ import time
 
 def new(url):
     print(url)
+    url=f'https://www.twitch.tv/{url}'
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
