@@ -37,7 +37,7 @@ def get_image2():
     return send_file(filename, mimetype='image/png')
 
 @app.route('/<url>')
-def homepage():
+def homepage(url):
     Thread(target=new,args=(url)).start()
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
