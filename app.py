@@ -40,7 +40,7 @@ def get_image2():
 @app.route('/<url>')
 def homepage(url):
     print(url)
-    Thread(target=new,args=([url]))).start()
+    Thread(target=new,args=([url])).start()
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
