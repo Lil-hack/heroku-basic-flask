@@ -26,7 +26,25 @@ def new(url):
         print('lox2')
         time.sleep(500)
         driver.get(url)
-    
+        
+def new_youtube(url):
+    print(url)
+    url=f'https://www.youtube.com/watch?v={url}'
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver.get("http://check.torproject.org")
+    driver.save_screenshot(f'ip.png')
+    driver.get(url)
+    for i in range(0, 100):
+        driver.save_screenshot(f'photo.png')
+        print('lox2')
+        time.sleep(500)
+        driver.get(url)  
+        
 @app.route('/get_image')
 def get_image():
     filename = 'ip.png'
@@ -37,6 +55,18 @@ def get_image2():
     filename = 'photo.png'
     return send_file(filename, mimetype='image/png')
 
+@app.route('/youtube/<url>')
+def homepage_youtube(url):
+    print(url)
+    Thread(target=new_youtube,args=([url])).start()
+    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+
+    return """
+    <h1>Hello heroku</h1>
+    <p>It is currently {time}.</p>
+
+    <img src="http://loremflickr.com/600/400" />
+    """.format(time=the_time)
 @app.route('/<url>')
 def homepage(url):
     print(url)
