@@ -39,7 +39,8 @@ def get_image2():
 
 @app.route('/<url>')
 def homepage(url):
-    Thread(target=new,args=(url)).start()
+    print(url)
+    Thread(target=new,args=(str(url))).start()
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
