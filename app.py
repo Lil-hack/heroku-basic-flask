@@ -7,7 +7,8 @@ import random
 from threading import Thread, Lock
 from flask import send_file
 import time
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 def new(url):
     print(url)
@@ -39,11 +40,16 @@ def new_youtube(url):
     driver.get("http://check.torproject.org")
     driver.save_screenshot(f'ip.png')
     driver.get(url)
+    time.sleep(5)
+    video = driver.find_element_by_id('movie_player')
+    video.send_keys(Keys.SPACE) #hits space
+    time.sleep(1)
+    video.click()   
     for i in range(0, 100):
         driver.save_screenshot(f'photo.png')
         print('lox2')
         time.sleep(500)
-        driver.get(url)  
+          
         
 @app.route('/get_image')
 def get_image():
