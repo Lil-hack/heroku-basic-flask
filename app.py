@@ -9,8 +9,8 @@ from flask import send_file
 import time
 
 
-def new():
-    url="https://www.twitch.tv/jkww"
+def new(url):
+    print(url)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
@@ -36,9 +36,9 @@ def get_image2():
     filename = 'photo.png'
     return send_file(filename, mimetype='image/png')
 
-@app.route('/')
+@app.route('/<url>')
 def homepage():
-    Thread(target=new).start()
+    Thread(target=new,args=(url).start()
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
 
     return """
