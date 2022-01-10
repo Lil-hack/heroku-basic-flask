@@ -29,10 +29,11 @@ def new(url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get(url)
     driver.save_screenshot(f'ip.png')
+    urlcockie='https://www.twitch.tv/'
     file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie)-1)], 'r')
     for item in file1:
         data = item.split('	')
-        if url.find(data[0]) != -1:
+        if urlcockie.find(data[0]) != -1:
             print(file1)
             value = data[6].replace(' ', '').replace('\r', '').replace('\n', '')
             cookie_dict = {
