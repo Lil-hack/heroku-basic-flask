@@ -29,7 +29,7 @@ def new(url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get(url)
     driver.save_screenshot(f'ip.png')
-    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie))], 'r')
+    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie)-1)], 'r')
     for item in file1:
         data = item.split('	')
         if url.find(data[0]) != -1:
@@ -50,6 +50,11 @@ def new(url):
     
     for i in range(0, 100):
         driver.save_screenshot(f'photo.png')
+        time.sleep(5)
+        try:
+            driver.find_element_by_xpath('//*[@id="root"]/div/div[2]/div[1]/main/div[2]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div[7]/div/div[3]/button').click()
+        except Exception as e:
+            pass
         print('lox2')
         time.sleep(500)
         driver.get(url)
