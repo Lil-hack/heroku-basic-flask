@@ -48,7 +48,7 @@ def new_youtube(url):
     driver.get("http://check.torproject.org")
     driver.save_screenshot(f'ip.png')
     driver.get(url)
-    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie)], 'r')
+    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie))], 'r')
     driver.delete_all_cookies()
     for item in file1:
         data = item.split('	')
