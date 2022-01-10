@@ -10,6 +10,14 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
+path = os.getcwd()
+list_cockie=[]
+with os.scandir(path+"\\cockiestwitch") as listOfEntries:
+    for entry in listOfEntries:
+        # печать всех записей, являющихся файлами
+        if entry.is_file():
+           list_cockie.append(entry.name)
+        
 def new(url):
     print(url)
     url=f'https://www.twitch.tv/{url}'
@@ -39,6 +47,25 @@ def new_youtube(url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get("http://check.torproject.org")
     driver.save_screenshot(f'ip.png')
+    driver.get(url)
+    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie)], 'r')
+    driver.delete_all_cookies()
+    for item in file1:
+        data = item.split('	')
+        if url.find(data[0]) != -1:
+            print(file1)
+            value = data[6].replace(' ', '').replace('\r', '').replace('\n', '')
+            cookie_dict = {
+                'name': data[5],
+                'value': value,
+                "domain": data[0],  # google chrome
+                "expires": data[4],
+                'path': data[2],
+                'httpOnly': False,
+                'HostOnly': False,
+                'Secure': False
+            }
+            driver.add_cookie(cookie_dict)
     driver.get(url)
     time.sleep(5)
     video = driver.find_element_by_id('movie_player')
