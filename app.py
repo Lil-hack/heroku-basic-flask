@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 
 path = os.getcwd()
 list_cockie=[]
-with os.scandir(path+"\\cockiestwitch") as listOfEntries:
+with os.scandir(path+"/cockiestwitch") as listOfEntries:
     for entry in listOfEntries:
         # печать всех записей, являющихся файлами
         if entry.is_file():
