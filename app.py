@@ -27,9 +27,27 @@ def new(url):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get("http://check.torproject.org")
-    driver.save_screenshot(f'ip.png')
     driver.get(url)
+    driver.save_screenshot(f'ip.png')
+    file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie))], 'r')
+    for item in file1:
+        data = item.split('	')
+        if url.find(data[0]) != -1:
+            print(file1)
+            value = data[6].replace(' ', '').replace('\r', '').replace('\n', '')
+            cookie_dict = {
+                'name': data[5],
+                'value': value,
+                "domain": data[0],  # google chrome
+                "expires": data[4],
+                'path': data[2],
+                'httpOnly': False,
+                'HostOnly': False,
+                'Secure': False
+            }
+            driver.add_cookie(cookie_dict)
+    driver.get(url)
+    
     for i in range(0, 100):
         driver.save_screenshot(f'photo.png')
         print('lox2')
