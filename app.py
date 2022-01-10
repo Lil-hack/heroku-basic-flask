@@ -7,16 +7,16 @@ import random
 from threading import Thread, Lock
 from flask import send_file
 import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
 
-path = os.getcwd()
-list_cockie=[]
-with os.scandir(path+"/cockiestwitch") as listOfEntries:
-    for entry in listOfEntries:
-        # печать всех записей, являющихся файлами
-        if entry.is_file():
-           list_cockie.append(entry.name)
+# path = os.getcwd()
+# list_cockie=[]
+# with os.scandir(path+"/cockiestwitch") as listOfEntries:
+#     for entry in listOfEntries:
+#         # печать всех записей, являющихся файлами
+#         if entry.is_file():
+#            list_cockie.append(entry.name)
         
 def new(url):
     print(url)
@@ -27,33 +27,10 @@ def new(url):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get(url)
+    driver.get("http://check.torproject.org")
     driver.save_screenshot(f'ip.png')
-    try:
-        urlcockie='https://www.twitch.tv/'
-        file1 = open('cockiestwitch/' + list_cockie[random.randint(1,len(list_cockie)-1)], 'r')
-        for item in file1:
-            data = item.split('	')
-            if urlcockie.find(data[0]) != -1:
-                print(file1)
-                value = data[6].replace(' ', '').replace('\r', '').replace('\n', '')
-                cookie_dict = {
-                    'name': data[5],
-                    'value': value,
-                    "domain": data[0],  # google chrome
-                    "expires": data[4],
-                    'path': data[2],
-                    'httpOnly': False,
-                    'HostOnly': False,
-                    'Secure': False
-                }
-                driver.add_cookie(cookie_dict)
-    except Exception as e:
-        pass
     driver.get(url)
-    
     for i in range(0, 100):
-        
         time.sleep(5)
         try:
             driver.find_element_by_xpath('//*[@id="root"]/div/div[2]/div[1]/main/div[2]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div/div[7]/div/div[3]/button').click()
