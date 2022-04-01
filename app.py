@@ -81,7 +81,7 @@ def get_image2():
     filename = 'photo.png'
     return send_file(filename, mimetype='image/png')
 
-@app.route('/youtube')
+@app.route('/youtube/<url>')
 def homepage_youtube(url):
     print(url)
     Thread(target=new_youtube,args=([url])).start()
