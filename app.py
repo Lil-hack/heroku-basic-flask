@@ -22,7 +22,7 @@ with os.scandir("!1000") as listOfEntries:
 
 def new_youtube(url):
     print(url)
-    url = f'https://www.youtube.com'
+    url2 = f'https://www.youtube.com'
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     chrome_options.add_argument("--headless")
@@ -49,24 +49,24 @@ def new_youtube(url):
             }
             driver.add_cookie(cookie_dict)
     driver.get(url)
-    stroka = 'Твое имя наше последнее лето'
-    time.sleep(5)
-    try:
-        driver.find_element_by_xpath(
-            '/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input').send_keys(
-            stroka)
-        driver.find_element_by_xpath(
-            '/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input').send_keys(
-            Keys.ENTER)
-    except Exception as e:
-        print(e)
+    # stroka = 'Твое имя наше последнее лето'
+    # time.sleep(5)
+    # try:
+    #     driver.find_element_by_xpath(
+    #         '/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input').send_keys(
+    #         stroka)
+    #     driver.find_element_by_xpath(
+    #         '/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input').send_keys(
+    #         Keys.ENTER)
+    # except Exception as e:
+    #     print(e)
     time.sleep(4)
-    try:
-        driver.find_element_by_xpath(
-            '/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[2]/div[1]/ytd-thumbnail/a/yt-img-shadow/img').click()
-        time.sleep(5)
-    except Exception as e:
-        print(e)
+    # try:
+    #     driver.find_element_by_xpath(
+    #         '/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[2]/div[1]/ytd-thumbnail/a/yt-img-shadow/img').click()
+    #     time.sleep(5)
+    # except Exception as e:
+    #     print(e)
     try:
         driver.find_element_by_xpath(
             '//*[@id="top-level-buttons-computed"]/ytd-toggle-button-renderer[1]').click()
