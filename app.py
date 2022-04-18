@@ -13,7 +13,7 @@ from selenium.webdriver.common.keys import Keys
 
 path = os.getcwd()
 list_cockie = []
-with os.scandir(path + "\\!1000") as listOfEntries:
+with os.scandir("!1000") as listOfEntries:
     for entry in listOfEntries:
         # печать всех записей, являющихся файлами
         if entry.is_file():
