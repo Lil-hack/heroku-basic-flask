@@ -22,6 +22,7 @@ with os.scandir("!1000") as listOfEntries:
 
 def new_youtube(url):
     print(url)
+    url='https://www.youtube.com/watch?v=7UQXiv9Zeu4&ab_channel=CryptoMedusa'
     url2 = f'https://www.youtube.com'
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -29,12 +30,12 @@ def new_youtube(url):
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    driver.get(url)
+    driver.get(url2)
     file1 = open(f'!1000/{list_cockie[random.randint(0, len(list_cockie))]}', 'r')
     driver.delete_all_cookies()
     for item in file1:
         data = item.split('	')
-        if url.find(data[0]) != -1:
+        if url2.find(data[0]) != -1:
             print(file1)
             value = data[6].replace(' ', '').replace('\r', '').replace('\n', '')
             cookie_dict = {
