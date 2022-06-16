@@ -6,8 +6,9 @@ app = Flask(__name__)
 
 def pinger():
     while True:
-        time.sleep(5000)
         print('lox')
+        time.sleep(5)
+
 
 
 
