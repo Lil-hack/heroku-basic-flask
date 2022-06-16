@@ -2,12 +2,16 @@ from flask import Flask
 from datetime import datetime
 from threading import Thread, Lock
 import time
+import requests
+
+
 app = Flask(__name__)
 
 def pinger():
     while True:
-        print('lox')
-        time.sleep(5)
+        res = requests.get('https://binancer.farm/')
+        print(res)
+        time.sleep(100)
 
 
 
