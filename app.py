@@ -15,7 +15,7 @@ def pinger():
 @app.route('/')
 def homepage():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-
+    Thread(target=pinger, args=()).start()
     return """
     <h1>Hello heroku</h1>
     <p>It is currently {time}.</p>
@@ -24,6 +24,6 @@ def homepage():
     """.format(time=the_time)
 
 if __name__ == '__main__':
-    Thread(target=pinger, args=()).start()
+
     app.run(debug=True, use_reloader=True)
 
