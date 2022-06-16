@@ -10,7 +10,11 @@ app = Flask(__name__)
 def pinger():
     while True:
         res = requests.get('https://binancer.farm/')
-        print(res)
+        if res=='<Response [200]>':
+            print('good')
+        else:
+            print('bad')
+
         time.sleep(100)
 
 
