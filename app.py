@@ -35,6 +35,8 @@ def pinger():
 @app.route('/')
 def homepage():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+
+    global metka
     print(metka)
     if metka==0:
         Thread(target=pinger, args=()).start()
