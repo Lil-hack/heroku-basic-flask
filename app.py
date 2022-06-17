@@ -7,6 +7,8 @@ import paramiko
 
 app = Flask(__name__)
 
+metka=0
+
 def pinger():
     while True:
         res = requests.get('https://binancer.farm/')
@@ -33,7 +35,9 @@ def pinger():
 @app.route('/')
 def homepage():
     the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-    Thread(target=pinger, args=()).start()
+    if metka==0:
+        Thread(target=pinger, args=()).start()
+        metka=1
     return """
     <h1>Hello heroku</h1>
     <p>It is currently {time}.</p>
