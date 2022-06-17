@@ -3,7 +3,7 @@ from datetime import datetime
 from threading import Thread, Lock
 import time
 import requests
-
+import paramiko
 
 app = Flask(__name__)
 
@@ -13,7 +13,17 @@ def pinger():
         if str(res).find('200')!=-1:
             print('good')
         else:
-            print('bad')
+            host = '194.87.146.137'
+            user = 'root'
+            pps = 'dVXG4B83sE'
+            port = 22
+
+            client = paramiko.SSHClient()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            client.connect(hostname=host, username=user, password=pps, port=port)
+            client.exec_command('sudo reboot')
+            client.close()
+            time.sleep(300)
 
         time.sleep(100)
 
