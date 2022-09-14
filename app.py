@@ -27,6 +27,22 @@ def pinger():
             client.close()
             time.sleep(300)
 
+        res = requests.get('https://bin.farm/')
+        if str(res).find('200') != -1:
+            print('good')
+        else:
+            host = '195.133.49.227'
+            user = 'root'
+            pps = 'vLTYi1mjTl'
+            port = 22
+
+            client = paramiko.SSHClient()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            client.connect(hostname=host, username=user, password=pps, port=port)
+            client.exec_command('sudo reboot')
+            client.close()
+            time.sleep(300)
+
         time.sleep(100)
 
 
