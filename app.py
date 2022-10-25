@@ -11,6 +11,22 @@ metka=0
 
 def pinger():
     while True:
+        res = requests.get('https://ku.farm/')
+        if str(res).find('200') != -1:
+            print('good')
+        else:
+            host = '194.87.248.132'
+            user = 'root'
+            pps = 'dI1DGqlasI'
+            port = 22
+
+            client = paramiko.SSHClient()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            client.connect(hostname=host, username=user, password=pps, port=port)
+            client.exec_command('sudo reboot')
+            client.close()
+            time.sleep(300)
+            
         res = requests.get('https://binancer.farm/')
         if str(res).find('200')!=-1:
             print('good')
@@ -42,6 +58,8 @@ def pinger():
             client.exec_command('sudo reboot')
             client.close()
             time.sleep(300)
+
+
 
         time.sleep(100)
 
