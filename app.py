@@ -15,9 +15,9 @@ def pinger():
         if str(res).find('200') != -1:
             print('good')
         else:
-            host = '194.87.248.132'
+            host = '181.215.68.60'
             user = 'root'
-            pps = 'dI1DGqlasI'
+            pps = '123ZiK890'
             port = 22
 
             client = paramiko.SSHClient()
